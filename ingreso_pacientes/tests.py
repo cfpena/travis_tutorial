@@ -22,9 +22,12 @@ class CrearPaciente(TestCase):
     def test_functional_pacientes_post(self):
         response = self.cliente.post('/pacientes/',{'nombres':'Jhon','apellidos':'Smith','cedula':'9999999999','nro_historia':'111111'})
         self.assertContains(response,'guardado correctamente')
-    
+
     def test_crear_paciente_view(self):
         respuesta = self.cliente.post('/pacientes/',{"nombres":"Jhon","apellidos":"Smith","cedula":"9999999999","nro_historia":"111111"})
+        self.assertContains(respuesta,"guardado correctamente")
+    def test_error404(self):
+        respuesta = self.cliente.put('/pacientes/',{"nombres":"Jhon","apellidos":"Smith","cedula":"9999999999","nro_historia":"111111"})
         self.assertContains(respuesta,"guardado correctamente")
 
     # def test_lista_consultas(self):
